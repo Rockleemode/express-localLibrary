@@ -4,6 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
+//routes
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const catalogRouter = require("./routes/catalog"); //Import routes for "catalog" area of site
@@ -17,7 +18,9 @@ const mongoDB = "mongodb+srv://rocklee:rocklee@rocklee.utzths0.mongodb.net/local
 
 main().catch((err) => console.log(err));
 async function main() {
-  await mongoose.connect(mongoDB);
+  await mongoose.connect(mongoDB,{
+    serverSelectionTimeoutMS: 50000
+  });
 }
 
 
