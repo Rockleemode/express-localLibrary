@@ -15,6 +15,12 @@ const BookInstanceSchema = new Schema({
   due_back: { type: Date, default: Date.now },
 });
 
+//formatted date as YYYY-MM-DD
+BookInstanceSchema.virtual("due_back_yyyy_mm_dd").get(function () {
+  return DateTime.fromJSDate(this.due_back).toISODate(); // format 'YYYY-MM-DD'
+});
+
+
 //formatted date using luxon.
 BookInstanceSchema.virtual("due_back_formatted").get(function () {
   return DateTime.fromJSDate(this.due_back).toLocaleString(DateTime.DATE_MED);
